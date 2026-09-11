@@ -1,0 +1,28 @@
+:root {
+  --color-teal-deep: #0B4F4A;
+  --color-teal: #1B7A72;
+  --color-mint: #A8E6CF;
+  --color-mint-light: #EAFBF3;
+  --color-coral: #FF6F59;
+  --color-coral-light: #FFE3DD;
+  --color-text: #1A2B2A;
+  --color-text-muted: #5C6D6B;
+  --color-bg: #FDFDFB;
+  --color-white: #FFFFFF;
+  --color-border: #E0E8E6;
+
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-teal-deep);
+}

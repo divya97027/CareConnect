@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Dr. Rohan Mehta", "specialty": "Cardiologist", "experience": 8, "bio": "Specialist in heart-related conditions." },
+  { "id": 2, "name": "Dr. Anjali Verma", "specialty": "Dermatologist", "experience": 5, "bio": "Skin, hair, and nail specialist." },
+  { "id": 3, "name": "Dr. Sameer Khan", "specialty": "Pediatrician", "experience": 10, "bio": "Child healthcare specialist." }
+]
