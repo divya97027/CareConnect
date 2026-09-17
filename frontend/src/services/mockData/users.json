@@ -1,4 +1,4 @@
 [
-  { "id": 1, "name": "Divya Sharma", "email": "patient@test.com", "password": "123456", "role": "PATIENT" },
-  { "id": 2, "name": "Dr. Rohan Mehta", "email": "doctor@test.com", "password": "123456", "role": "DOCTOR" }
+  { "id": 1, "name": "Divya Upadhyay", "email": "patient@test.com", "password": "CareDemo@26", "role": "PATIENT" },
+  { "id": 2, "name": "Dr. Rohan Mehta", "email": "doctor@test.com", "password": "CareDemo@26", "role": "DOCTOR" }
 ]
