@@ -11,6 +11,18 @@ function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
 
+  const [forgotMsg, setForgotMsg] = useState('')
+
+const handleForgotPassword = (e) => {
+  e.preventDefault()
+  if (!email) {
+    setForgotMsg('Please enter your email above first.')
+    return
+  }
+  // Mock: real backend aane par yahan POST /api/auth/forgot-password call hogi
+  setForgotMsg(`If ${email} is registered, a reset link has been sent.`)
+}
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
@@ -79,8 +91,9 @@ function Login() {
             />
             <div className="form-row">
               <label><input type="checkbox" /> Remember me</label>
-              <a href="#">Forgot password?</a>
+              <a href="#" onClick={handleForgotPassword}>Forgot password?</a>
             </div>
+            {forgotMsg && <p className="hint-text" style={{ color: 'var(--color-teal)', marginTop: -6, marginBottom: 12 }}>{forgotMsg}</p>}
             {error && <p className="error-text">{error}</p>}
             <button className="btn btn-primary" type="submit" disabled={loading}>
               {loading ? 'Logging in...' : 'Log in'}

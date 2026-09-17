@@ -54,8 +54,8 @@ body {
   margin: 0;
 }
 
-#root {
-  width: 1126px;
+/* #root {
+  width: 1280px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -64,7 +64,8 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-}
+  padding: 2rem;
+} */
 
 h1,
 h2 {

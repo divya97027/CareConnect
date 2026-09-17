@@ -1,0 +1,7 @@
+[
+  { "id": 1, "patientName": "Divya Sharma", "doctorName": "Dr. Rohan Mehta", "specialty": "Cardiologist", "date": "2026-09-20", "time": "10:00 AM", "status": "CONFIRMED" },
+  { "id": 2, "patientName": "Divya Sharma", "doctorName": "Dr. Anjali Verma", "specialty": "Dermatologist", "date": "2026-08-10", "time": "3:00 PM", "status": "COMPLETED" },
+  { "id": 3, "patientName": "Divya Sharma", "doctorName": "Dr. Sameer Khan", "specialty": "Pediatrician", "date": "2026-09-25", "time": "11:30 AM", "status": "PENDING" },
+  { "id": 4, "patientName": "Aditi Rao", "doctorName": "Dr. Rohan Mehta", "specialty": "Cardiologist", "date": "2026-09-18", "time": "9:00 AM", "status": "CONFIRMED" },
+  { "id": 5, "patientName": "Karan Mehta", "doctorName": "Dr. Rohan Mehta", "specialty": "Cardiologist", "date": "2026-09-18", "time": "11:00 AM", "status": "PENDING" }
+]
