@@ -38,13 +38,44 @@ function DoctorDetail() {
 
   // Simple varied replies based on keywords, so it doesn't feel like one canned message
   const getReply = (text) => {
-    const t = text.toLowerCase()
-    if (t.includes('time') || t.includes('slot')) return `Available slots for ${doctor.name} today are ${doctor.slots.join(', ')}.`
-    if (t.includes('cancel')) return `No problem — I can help cancel your appointment. Please confirm the date and I'll process it.`
-    if (t.includes('fee') || t.includes('cost') || t.includes('price')) return `Consultation fee details will be shared closer to your visit — usually confirmed at check-in.`
-    if (t.includes('hi') || t.includes('hello')) return `Hello! Happy to help — do you have a question about booking or the visit?`
-    return `Thanks for the message — I'll check with ${doctor.name} and get back to you shortly.`
-  }
+  const t = text.toLowerCase()
+
+  if (t.includes('time') || t.includes('slot') || t.includes('kab'))
+    return `Available slots for ${doctor.name} today are ${doctor.slots.join(', ')}. Would any of these work for you?`
+
+  if (t.includes('cancel') || t.includes('reschedule'))
+    return `No problem — I can help with that. Could you share the date of the appointment you'd like to change?`
+
+  if (t.includes('fee') || t.includes('cost') || t.includes('price') || t.includes('payment'))
+    return `The consultation fee is confirmed at check-in, usually around ₹500–₹800 depending on the visit type.`
+
+  if (t.includes('report') || t.includes('test') || t.includes('prescription'))
+    return `You can share your reports here or bring a printed copy to your appointment — ${doctor.name} will review them during the visit.`
+
+  if (t.includes('address') || t.includes('location') || t.includes('where'))
+    return `We're located at ${doctor.hospital}. I can share the exact map link if needed.`
+
+  if (t.includes('insurance') || t.includes('cashless'))
+    return `We accept most major insurance providers for cashless treatment — I can confirm yours if you share the provider name.`
+
+  if (t.includes('delay') || t.includes('late') || t.includes('wait'))
+    return `Apologies for any wait — ${doctor.name} sometimes runs a little behind on busy days. I'll notify you if there's a delay before your slot.`
+
+  if (t.includes('thank'))
+    return `You're welcome! Let me know if there's anything else before your appointment.`
+
+  if (t.includes('hi') || t.includes('hello') || t.includes('hey'))
+    return `Hello! Happy to help — do you have a question about booking, fees, or the visit itself?`
+
+  // Fallback — varies instead of repeating the same line
+  const fallbacks = [
+    `That's a good question — let me confirm with ${doctor.name} and get back to you.`,
+    `I'll note that down and follow up with you shortly.`,
+    `Let me check on that for you — I'll message back in a bit.`,
+    `Got it — I'll pass this along to ${doctor.name} directly.`,
+  ]
+  return fallbacks[Math.floor(Math.random() * fallbacks.length)]
+}
 
   const sendMessage = () => {
     const text = chatInput.trim()

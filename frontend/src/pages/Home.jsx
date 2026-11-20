@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import Logo from '../components/Logo'
 
 function Home() {
   return (
     <div>
       <nav className="navbar">
-        <span className="logo">CareConnect</span>
+        <Logo size={32} />
         <div style={{ display: 'flex', gap: 12 }}>
           <Link to="/login" className="btn-outline-sm">Login</Link>
           <Link to="/register" className="btn-primary-sm">Get Started</Link>

@@ -1,10 +1,29 @@
 import baseAppointments from './mockData/appointments.json'
 
-const STORAGE_KEY = 'careconnect_appointments'
+const STORAGE_KEY = 'careconnect_appointments_v2'
+
+const dayISO = (offset) => {
+  const d = new Date()
+  d.setDate(d.getDate() + offset)
+  return d.toLocaleDateString('en-CA') // YYYY-MM-DD
+}
+
+const seed = () => [
+  { id: 1, patientName: 'Aditi Rao', doctorName: 'Dr. Rohan Mehta', specialty: 'Cardiologist', date: dayISO(0), time: '10:00 AM', status: 'CONFIRMED', reason: 'Blood pressure checkup' },
+  { id: 2, patientName: 'Karan Mehta', doctorName: 'Dr. Rohan Mehta', specialty: 'Cardiologist', date: dayISO(0), time: '2:00 PM', status: 'PENDING', reason: 'Chest discomfort' },
+  { id: 3, patientName: 'Divya Sharma', doctorName: 'Dr. Rohan Mehta', specialty: 'Cardiologist', date: dayISO(2), time: '11:30 AM', status: 'CONFIRMED', reason: 'Follow-up visit' },
+  { id: 4, patientName: 'Sneha Kulkarni', doctorName: 'Dr. Rohan Mehta', specialty: 'Cardiologist', date: dayISO(3), time: '4:00 PM', status: 'PENDING', reason: 'ECG test' },
+  { id: 5, patientName: 'Rahul Jain', doctorName: 'Dr. Rohan Mehta', specialty: 'Cardiologist', date: dayISO(-3), time: '3:00 PM', status: 'COMPLETED', reason: 'Cholesterol review' },
+  { id: 6, patientName: 'Divya Sharma', doctorName: 'Dr. Anjali Verma', specialty: 'Dermatologist', date: dayISO(-10), time: '12:00 PM', status: 'COMPLETED', reason: 'Skin allergy' },
+  { id: 7, patientName: 'Divya Sharma', doctorName: 'Dr. Sameer Khan', specialty: 'Pediatrician', date: dayISO(5), time: '1:00 PM', status: 'CONFIRMED', reason: 'Vaccination query' },
+]
 
 function getStored() {
   const saved = localStorage.getItem(STORAGE_KEY)
-  return saved ? JSON.parse(saved) : baseAppointments
+  if (saved) return JSON.parse(saved)
+  const fresh = seed()
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh))
+  return fresh
 }
 
 function save(appointments) {

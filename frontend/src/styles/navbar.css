@@ -1,0 +1,13 @@
+.nb { background: #fff; border-bottom: 1px solid #E2EEEB; position: sticky; top: 0; z-index: 20; }
+.nb-inner { max-width: 1100px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+.nb-logo { text-decoration: none; }
+.nb-right { display: flex; align-items: center; gap: 22px; }
+.nb-link { color: #134E4A; font-weight: 600; font-size: 15px; text-decoration: none; }
+.nb-link:hover { color: #0F766E; }
+.nb-user { font-size: 14px; color: #4B5563; }
+.nb-logout {
+  padding: 8px 18px; border-radius: 20px; border: 1.5px solid #99D8CE;
+  background: #fff; color: #0F766E; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.nb-logout:hover { background: #E6F7F4; }
+@media (max-width: 700px) { .nb-user { display: none; } .nb-right { gap: 14px; } }

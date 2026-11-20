@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { registerUser } from '../services/authService'
 import { useAuth } from '../context/AuthContext'
+import Logo from '../components/Logo'
+import '../styles/login.css'
 
 function Register() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'PATIENT', phone: '' })
+  const [role, setRole] = useState('PATIENT')
+  const [form, setForm] = useState({ name: '', email: '', password: '', phone: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const { login } = useAuth()
@@ -15,9 +18,13 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+    if (form.password.length < 6) {
+      setError('Password must be at least 6 characters.')
+      return
+    }
     setLoading(true)
     try {
-      const newUser = await registerUser(form)
+      const newUser = await registerUser({ ...form, role })
       login({ id: newUser.id, name: newUser.name, role: newUser.role }, 'mock-jwt-token-' + newUser.id)
       navigate(newUser.role === 'DOCTOR' ? '/doctor-dashboard' : '/doctors')
     } catch (err) {
@@ -28,36 +35,75 @@ function Register() {
   }
 
   return (
-    <div className="auth-page">
-      <div className="auth-panel">
-        <div className="floating-icons">
-          <svg className="icon-stethoscope" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.3"><path d="M6 3v6a3 3 0 0 0 6 0V3M12 9v3a5 5 0 0 0 10 0v-2M18 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" /></svg>
-          <svg className="icon-heartbeat" viewBox="0 0 100 40" fill="none" stroke="white" strokeWidth="2"><path d="M0 20h20l8-16 12 32 8-24 6 8h46" /></svg>
-          <svg className="icon-cross" viewBox="0 0 24 24" fill="white"><path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8V2Z" /></svg>
-          <svg className="icon-pill" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.3"><rect x="2" y="9" width="20" height="6" rx="3" transform="rotate(-30 12 12)" /><line x1="12" y1="6" x2="12" y2="18" transform="rotate(-30 12 12)" /></svg>
+    <div className="lg-wrap">
+      <div className="lg-page lg-tall">
+        {/* LEFT */}
+        <div className="lg-left">
+          <div className="lg-brand"><Logo size={40} /></div>
+          <h1>Your health,<br /><span>one place.</span></h1>
+          <p className="lg-tagline">Create your account to book appointments, or manage your patients as a doctor.</p>
+
+          <div className="lg-stage">
+            <div className="lg-glass lg-steps">
+              <h4>Get started in 3 steps</h4>
+              <ol>
+                <li><b>1</b> Create your account</li>
+                <li><b>2</b> Find a doctor by specialty</li>
+                <li><b>3</b> Book a slot and track it</li>
+              </ol>
+            </div>
+
+            <div className="lg-glass lg-spec">
+              <h4>10 specialties available</h4>
+              <div className="lg-chips">
+                <span>Cardiology</span><span>Dermatology</span><span>Pediatrics</span>
+                <span>Orthopedic</span><span>ENT</span><span>Neurology</span>
+                <span>Dentist</span><span>+ more</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="panel-heading">
-          <div className="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h3l2.5-7 4 14 2.5-7H21" /></svg></div>
-          <h1>Join CareConnect</h1>
-          <p>Create your account to start booking appointments or manage patients as a doctor.</p>
-        </div>
-        <div className="auth-card">
-          <span className="form-kicker">CareConnect</span>
-          <h2>Let's get <span className="accent-word">started</span></h2>
-          <p className="subtitle">Create your account — takes less than a minute</p>
-          <form onSubmit={handleSubmit}>
-            <input className="field" type="text" name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />
-            <input className="field" type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-            <input className="field" type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-            <input className="field" type="tel" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} />
-            <select className="field" name="role" value={form.role} onChange={handleChange}>
-              <option value="PATIENT">Patient</option>
-              <option value="DOCTOR">Doctor</option>
-            </select>
-            {error && <p className="error-text">{error}</p>}
-            <button className="btn btn-primary" type="submit" disabled={loading}>{loading ? 'Creating account...' : 'Register'}</button>
-          </form>
-          <p className="hint-text">Already have an account? <Link to="/">Log in</Link></p>
+
+        {/* RIGHT */}
+        <div className="lg-right">
+          <div className="lg-blob" />
+          <div className="lg-card">
+            <div className="lg-toggle" data-role={role}>
+              <div className="lg-toggle-pill" />
+              <button type="button" aria-pressed={role === 'PATIENT'} onClick={() => setRole('PATIENT')}>Patient</button>
+              <button type="button" aria-pressed={role === 'DOCTOR'} onClick={() => setRole('DOCTOR')}>Doctor</button>
+            </div>
+
+            <h2>Let's get <span>started</span></h2>
+            <p className="lg-sub">Create your account in under a minute</p>
+
+            <form onSubmit={handleSubmit}>
+              <div className="lg-input">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 4-6 8-6s8 2 8 6" /></svg>
+                <input type="text" name="name" placeholder="Full name" aria-label="Full name" value={form.name} onChange={handleChange} required />
+              </div>
+              <div className="lg-input">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                <input type="email" name="email" placeholder="Email address" aria-label="Email address" value={form.email} onChange={handleChange} required />
+              </div>
+              <div className="lg-input">
+                <svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                <input type="password" name="password" placeholder="Password (min 6 characters)" aria-label="Password" value={form.password} onChange={handleChange} required />
+              </div>
+              <div className="lg-input">
+                <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M11 18h2" /></svg>
+                <input type="tel" name="phone" placeholder="Phone number" aria-label="Phone number" value={form.phone} onChange={handleChange} />
+              </div>
+
+              {error && <p className="lg-error">{error}</p>}
+
+              <button className="lg-btn" type="submit" disabled={loading}>
+                {loading ? 'Creating account...' : `Register as ${role === 'DOCTOR' ? 'Doctor' : 'Patient'}`}
+              </button>
+            </form>
+
+            <p className="lg-new">Already have an account? <Link to="/">Log in</Link></p>
+          </div>
         </div>
       </div>
     </div>

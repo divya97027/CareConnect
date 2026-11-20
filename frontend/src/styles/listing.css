@@ -1,0 +1,99 @@
+.dl-page { min-height: 100vh; background: linear-gradient(160deg, #F0FDFA, #E6F4F1); }
+.dl-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+
+/* Banner */
+.dl-banner {
+  background: linear-gradient(135deg, #D5F5EE, #E8FAF6);
+  border: 1px solid #BFE9E0; border-radius: 22px; padding: 28px;
+  margin-bottom: 26px; box-shadow: 0 10px 30px rgba(15, 118, 110, 0.08);
+}
+.dl-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+.dl-top h1 { font-family: 'Poppins', 'Inter', sans-serif; font-size: 28px; line-height: 1.2; color: #134E4A; margin: 0; }
+.dl-top h1 span { display: block; font-weight: 500; font-size: 18px; color: #0F766E; margin-bottom: 2px; }
+
+.dl-search { position: relative; flex: 1; max-width: 420px; min-width: 240px; }
+.dl-search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: #64748B; fill: none; stroke-width: 2; stroke-linecap: round; }
+.dl-search input {
+  width: 100%; padding: 13px 14px 13px 42px; border-radius: 12px;
+  border: 1.5px solid #CFE3DF; background: #fff; color: #111827;
+  font-size: 15px; font-family: inherit;
+}
+.dl-search input:focus { outline: none; border-color: #2DD4BF; box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.25); }
+
+.dl-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.dl-chip {
+  padding: 8px 16px; border-radius: 10px; border: 1px solid #CFE3DF;
+  background: #fff; color: #134E4A; font-weight: 600; font-size: 14px;
+  cursor: pointer; font-family: inherit; transition: all 0.15s ease;
+}
+.dl-chip:hover { border-color: #0F766E; }
+.dl-chip.active { background: #0F766E; border-color: #0F766E; color: #fff; }
+
+.dl-count { color: #4B5563; font-size: 14px; margin: 0 0 14px; }
+
+/* Cards */
+.dl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.dl-card-link { text-decoration: none; color: inherit; display: block; }
+.dl-card {
+  position: relative; background: #fff; border: 1px solid #E2EEEB; border-radius: 18px;
+  padding: 20px; height: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.dl-card:hover { transform: translateY(-3px); border-color: #2DD4BF; box-shadow: 0 14px 30px rgba(15, 118, 110, 0.14); }
+
+.dl-avail { position: absolute; top: 18px; right: 18px; font-size: 12px; font-weight: 600; color: #15803D; }
+.dl-avail::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #22C55E; margin-right: 5px; }
+
+.dl-head { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+.dl-avatar {
+  position: relative; width: 66px; height: 66px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', 'Inter', sans-serif; font-weight: 700; font-size: 21px;
+}
+.dl-badge {
+  position: absolute; right: -4px; bottom: -4px; width: 28px; height: 28px; border-radius: 50%;
+  background: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+.dl-spec { font-size: 13px; font-weight: 600; margin: 0 0 2px; }
+.dl-name { font-family: 'Poppins', 'Inter', sans-serif; font-size: 17px; font-weight: 700; color: #134E4A; margin: 0 0 4px; }
+.dl-meta { font-size: 13px; color: #6B7280; margin: 0; }
+.dl-bio { font-size: 14px; color: #374151; margin: 0 0 16px; min-height: 42px; }
+
+.dl-btn {
+  display: block; text-align: center; padding: 11px; border-radius: 11px;
+  background: linear-gradient(90deg, #0F766E, #14B8A6); color: #fff;
+  font-weight: 600; font-size: 15px; box-shadow: 0 6px 14px rgba(15, 118, 110, 0.25);
+}
+.dl-empty { text-align: center; color: #4B5563; padding: 50px 0; font-size: 16px; }
+
+.dl-filterrow { display: flex; align-items: center; gap: 12px; }
+.dl-filterbtn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px;
+  border: 1.5px solid #99D8CE; background: #fff; color: #134E4A; font-weight: 600; font-size: 14px;
+  cursor: pointer; font-family: inherit;
+}
+.dl-filterbtn svg { width: 16px; height: 16px; stroke: #0F766E; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dl-filterbtn:hover { background: #E6F7F4; }
+.dl-clear { background: none; border: none; color: #0F766E; font-weight: 600; cursor: pointer; text-decoration: underline; font-family: inherit; font-size: 14px; }
+
+.dl-overlay { position: fixed; inset: 0; background: rgba(11, 31, 28, 0.45); z-index: 50; display: flex; justify-content: flex-end; animation: dl-fade 0.2s; }
+.dl-drawer { width: 340px; max-width: 90vw; height: 100%; background: #fff; padding: 22px; overflow-y: auto; box-shadow: -20px 0 50px rgba(0, 0, 0, 0.2); animation: dl-slide 0.25s ease; }
+.dl-drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.dl-drawer-head h3 { font-family: 'Poppins', 'Inter', sans-serif; font-size: 20px; color: #134E4A; margin: 0; }
+.dl-x { background: #F0FDFA; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; color: #134E4A; font-size: 14px; }
+
+.dl-opt {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 11px 12px; margin-bottom: 6px;
+  border-radius: 12px; border: 1.5px solid transparent; background: #F7FBFA; color: #134E4A;
+  font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; text-align: left;
+}
+.dl-opt span { display: flex; align-items: center; gap: 10px; }
+.dl-opt i { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; }
+.dl-opt em { font-style: normal; font-size: 12px; background: #fff; border-radius: 20px; padding: 2px 9px; color: #4B5563; }
+.dl-opt:hover { border-color: #2DD4BF; }
+.dl-opt.active { background: #0F766E; color: #fff; }
+.dl-opt.active em { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+@keyframes dl-slide { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes dl-fade { from { opacity: 0; } to { opacity: 1; } }
